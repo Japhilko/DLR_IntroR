@@ -71,10 +71,18 @@ for (i in 1:2){
 }
 
 #-----------------------------#
-# Histogram und Dichte zusammen plotten
+# Zwei Barplots übereinander
 #-----------------------------#
 
 Erg <- tapply(MIDPERS$anzkm,MIDPERS$hp_sex,function(x)x)
 hist(Erg[[1]],na.rm=T,breaks=20,prob=T)
 points(density(Erg[[1]],na.rm=T),type="l",col="red")
 
+
+TabAB <- table(MIDPERS$hp_beruf,MIDPERS$bland)
+
+barplot(TabAB[2,],col=rgb(0,1,0,.2))
+barplot(TabAB[1,],col=rgb(0,0,1,.2),add=T)
+
+plot(TabAB[2,],type="l")
+plot(TabAB[1,],type="l",add=T)
